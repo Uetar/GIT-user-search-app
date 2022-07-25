@@ -36,3 +36,33 @@
     transform: rotate(360deg);
   }
 }
+head,
+body {
+  background-color: #141c2f;
+}
+h1 {
+  color: white;
+  letter-spacing: 3px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 25vw;
+  margin-top: 5vh;
+  padding: 0.5%;
+  width: 54vw;
+}
+.icon-dark {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  margin-block-start: 1.5em;
+  margin-block-end: 1.5em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+#change-theme-name {
+  color: white;
+}

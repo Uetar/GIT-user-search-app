@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.userCard {
+  border-radius: 2%;
+  font-family: Space Mono, monospace;
+  margin-left: 25vw;
+  margin-top: 5vh;
+  padding: 2%;
+  width: 50vw;
+  background-color: #1f2a48;
+}
+.userCardUserAvatarWraper {
+  color: #e0f3ff;
+  display: flex;
+}
+.userCardUserAvatar {
+  border-radius: 100px;
+  height: 25%;
+  width: 20%;
+  margin-right: 10%;
+}
+.userCardUserInfo {
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+}
+.userInfoUsername {
+  color: #155099;
+}
+.userCardBio {
+  margin: 2em 0 1.375em;
+  color: #e0f3ff;
+  justify-content: center;
+}
+.userCardStats {
+  color: #f6f8ff;
+  display: flex;
+  justify-content: space-around;
+  background-color: #141c2f;
+  border-radius: 0.625em;
+  text-align: center;
+  margin-bottom: 1.5em;
+  padding: 1.125em 1em;
+}
+.userCardContact {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+.userCardContact > li {
+  width: 50%;
+}
+.footer {
+  margin: 5%;
+  padding: 0;
+  color: #e0f3ff;
+  list-style: none;
+}
