@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "../styles/userCard.module.css";
-import ListItem from "../components/ListItem";
 
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import LanguageIcon from "@mui/icons-material/Language";
