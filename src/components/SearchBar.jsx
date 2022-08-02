@@ -74,11 +74,30 @@ const SearchBar = ({ setUserData, userData }) => {
     }
   }, [inputText]);
 
+  useEffect(() => {
+    ((e) => {
+      searchParams.get("status") === "true" && getData()
+    })(); 
+  }, [getData,searchParams]);
+
+  const getData = useCallback(async()=>{
+    try {
+        let a = await axios.get(`https://api.github.com/users/${searchParams.get('q')}`);
+        console.log(a.data);
+        setUserData(a.data);
+        setFlag(false);
+        setUserFlag(true);
+      
+    } catch (error) {
+      console.log(error)
+    }
+  },[])
+
   const handleSubmit = useCallback(
     async (e) => {
-      console.log(e.target.value);
+      // console.log(e.target.value);
       e.preventDefault();
-      setInputText(e.target.value);
+      // setInputText(e.target.value);
       const searchValue = e.target.value
         ? e.target.value
         : searchParams.get("q");
@@ -127,7 +146,11 @@ const SearchBar = ({ setUserData, userData }) => {
             maxLength={39}
           />
           <button
-            onClick={(e) => handleSubmit(e)}
+            onClick={(e) => {
+              handleSubmit(e);
+              searchParams.set("status", "true");
+              setSearchParams(searchParams);
+            }}
             className={styles.userSearchButton}
             type="submit"
           >
