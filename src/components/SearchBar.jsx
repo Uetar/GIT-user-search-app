@@ -64,40 +64,41 @@ const SearchBar = ({ setUserData, userData }) => {
       setUserFlag(false);
       e.preventDefault();
       setInputText(e.target.value);
-      setSearchParams({ q: e.target.value });
+      setSearchParams({ ...searchParams, q: e.target.value });
     },
     [inputText, flag, searchParams]
   );
   useEffect(() => {
     if (inputText) {
-      setSearchParams({ q: inputText });
+      setSearchParams({ ...searchParams, q: inputText });
     }
   }, [inputText]);
 
+  const getData = useCallback(async () => {
+    try {
+      let a = await axios.get(
+        `https://api.github.com/users/${searchParams.get("q")}`
+      );
+      console.log(a.data);
+      setUserData(a.data);
+      setFlag(false);
+      setUserFlag(true);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   useEffect(() => {
     ((e) => {
-      searchParams.get("status") === "true" && getData()
-    })(); 
-  }, [getData,searchParams]);
-
-  const getData = useCallback(async()=>{
-    try {
-        let a = await axios.get(`https://api.github.com/users/${searchParams.get('q')}`);
-        console.log(a.data);
-        setUserData(a.data);
-        setFlag(false);
-        setUserFlag(true);
-      
-    } catch (error) {
-      console.log(error)
-    }
-  },[])
+      searchParams.get("status") === "true" && getData();
+    })();
+  }, [getData, searchParams]);
 
   const handleSubmit = useCallback(
     async (e) => {
-      // console.log(e.target.value);
+      console.log(e.target.value);
       e.preventDefault();
-      // setInputText(e.target.value);
+      setInputText(e.target.value);
       const searchValue = e.target.value
         ? e.target.value
         : searchParams.get("q");
@@ -148,8 +149,9 @@ const SearchBar = ({ setUserData, userData }) => {
           <button
             onClick={(e) => {
               handleSubmit(e);
-              searchParams.set("status", "true");
-              setSearchParams(searchParams);
+              const nsp = new URLSearchParams(searchParams);
+              nsp.set("status", "true");
+              setSearchParams(nsp);
             }}
             className={styles.userSearchButton}
             type="submit"
