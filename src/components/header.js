@@ -21,9 +21,13 @@ function Header(props) {
       <button className="icon-dark" onClick={themeToggle}>
         <span id="change-theme-name">{themeMode}</span>
         {themeMode === "Light" ? (
-          <LightModeIcon sx={{ color: "#FCFCFC" }} />
+          <LightModeIcon
+            sx={{ color: "#FCFCFC", height: "2vh", letterSpacing: "4px" }}
+          />
         ) : (
-          <ModeNightIcon sx={{ color: "#FCFCFC" }} />
+          <ModeNightIcon
+            sx={{ color: "#FCFCFC", height: "2vh", letterSpacing: "4px" }}
+          />
         )}
       </button>
     </header>

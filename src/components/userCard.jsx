@@ -5,8 +5,10 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import LanguageIcon from "@mui/icons-material/Language";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import BusinessIcon from "@mui/icons-material/Business";
+import { Grid, Typography } from "@mui/material";
 function UserCard(props) {
   const { data } = props;
+  const date = new Date("2022-06-17");
   return (
     <div className={styles.userCard}>
       {/* <div className={styles.userCardUser}> */}
@@ -14,12 +16,17 @@ function UserCard(props) {
         <img
           className={styles.userCardUserAvatar}
           src={data.avatar_url}
-          alt=""
+          alt="user-avatar"
         />
         <div className={styles.userCardUserInfo}>
           <h2 className={styles.userCardTitle}>{data.name}</h2>
           <h3 className={styles.userInfoUsername}>{data.login}</h3>
-          <p className={styles.userInfoJoinedDate}>{data.created_at}</p>
+          <p className={styles.userInfoJoinedDate}>
+            joined :
+            {new Intl.DateTimeFormat("en-GB", { dateStyle: "long" }).format(
+              date
+            )}
+          </p>
         </div>
       </div>
 
@@ -42,24 +49,24 @@ function UserCard(props) {
         </div>
       </div>
       <div className={styles.footer}>
-        <ul className={styles.userCardContact}>
-          <li>
+        <Grid className={styles.userCardContact} xs={12}>
+          <Grid item container xs={12} md={6} lg={6}>
             <LocationOnIcon />
-            {data.location || "not available"}
-          </li>
-          <li>
+            <Typography>{data.location || "not available"}</Typography>
+          </Grid>
+          <Grid item container xs={12} md={6} lg={6}>
             <LanguageIcon />
-            {data.blog || "not available"}
-          </li>
-          <li>
+            <Typography>{data.blog || "not available"}</Typography>
+          </Grid>
+          <Grid item container xs={12} md={6} lg={6}>
             <TwitterIcon />
-            {data.twitter || "not available"}
-          </li>
-          <li>
+            <Typography>{data.twitter || "not available"}</Typography>
+          </Grid>
+          <Grid item container xs={12} md={6} lg={6}>
             <BusinessIcon />
-            {data.company || "not available"}
-          </li>
-        </ul>
+            <Typography>{data.company || "not available"}</Typography>
+          </Grid>
+        </Grid>
       </div>
     </div>
   );
