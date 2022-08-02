@@ -1,14 +1,17 @@
 .box {
   width: 69%;
-  height: 200px;
+  height: 40vh;
   background-color: #1f2a48;
   margin-left: 25vw;
+  margin-top: 1vh;
   border-radius: 10px;
 }
 .box ul {
   list-style-type: none;
 }
 .box ul li button {
+  margin-left: 10px;
+  margin-top: 5px;
   color: rgba(245, 245, 245, 0.5);
   border: none;
   background: transparent;

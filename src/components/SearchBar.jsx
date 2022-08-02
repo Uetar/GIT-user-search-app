@@ -44,8 +44,7 @@ const SearchBar = ({ setUserData, userData }) => {
 
       // console.log(user.items);
       setUserList(user.items);
-      console.log("why");
-      setUserFlag(false);
+      // setUserFlag(false);
     }, 1000),
     [userList, userFlag]
   );
@@ -62,21 +61,24 @@ const SearchBar = ({ setUserData, userData }) => {
   const handleChange = useCallback(
     (e) => {
       setFlag(true);
+      setUserFlag(false);
       e.preventDefault();
-      console.log(inputText);
-
       setInputText(e.target.value);
       setSearchParams({ q: e.target.value });
     },
     [inputText, flag, searchParams]
   );
+  useEffect(() => {
+    if (inputText) {
+      setSearchParams({ q: inputText });
+    }
+  }, [inputText]);
 
-  // console.log(inputText)
   const handleSubmit = useCallback(
     async (e) => {
       console.log(e.target.value);
       e.preventDefault();
-
+      setInputText(e.target.value);
       const searchValue = e.target.value
         ? e.target.value
         : searchParams.get("q");
@@ -93,7 +95,7 @@ const SearchBar = ({ setUserData, userData }) => {
         console.log(e);
       }
     },
-    [searchParams, userFlag, flag]
+    [searchParams, userFlag, flag, inputText]
   );
 
   // const showData = useCallback((name) => {
